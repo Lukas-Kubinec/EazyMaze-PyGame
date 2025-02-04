@@ -25,7 +25,9 @@ clock = pygame.time.Clock()
 # Levels tile maps
 tile_size = 64
 
-level_one = [
+levels = [
+[
+    # Level 1
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
@@ -36,9 +38,10 @@ level_one = [
     [1, 0, 1, 1, 0, 1, 1, 1, 0, 1],
     [1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-]
+],
 
-level_two = [
+[
+    # Level 2
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 0, 0, 0, 1, 1, 1, 1, 1],
@@ -49,9 +52,42 @@ level_two = [
     [1, 0, 0, 1, 0, 1, 1, 1, 0, 1],
     [1, 1, 0, 1, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+],
+
+[
+    # Level 3
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 1, 0, 0, 0, 1, 1],
+    [1, 1, 0, 0, 0, 0, 1, 1, 1, 1],
+    [1, 0, 1, 0, 0, 0, 0, 1, 0, 1],
+    [1, 0, 1, 1, 1, 2, 0, 0, 0, 1],
+    [1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
+    [1, 0, 1, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 1, 1, 1, 0, 1],
+    [1, 1, 0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+],
+
+[
+    # Level 4
+    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 1, 1, 1, 1, 1, 1, 0, 1],
+    [1, 0, 1, 0, 0, 0, 0, 1, 0, 1],
+    [1, 0, 1, 0, 0, 2, 0, 1, 0, 1],
+    [1, 0, 1, 0, 0, 0, 0, 1, 0, 1],
+    [1, 0, 1, 0, 0, 0, 0, 1, 0, 1],
+    [1, 0, 1, 1, 1, 1, 1, 1, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0]
 ]
 
-tile_grid = level_one # first level
+]
+
+# Used to store level number
+level_number = 0
+# Stores the grid of a current level
+tile_grid = levels[level_number]
 
 # Objects list
 walls_list = []
@@ -76,13 +112,6 @@ def clean_lists():
     # Positions list
     wall_positions_list.clear()
     points_positions_list.clear()
-
-
-# Levels handler
-def move_level():
-    new_level = level_two
-    return new_level
-
 
 # Draws the tiles based on the tile map
 def initialise_objects():
@@ -147,7 +176,8 @@ while game_running:
 
         # Check for score
         if len(points_list) == 0:
-            tile_grid = move_level()
+            level_number += 1
+            tile_grid = levels[level_number]
             clean_lists()
             initialise_objects()
 
@@ -175,7 +205,7 @@ while game_running:
         ClassPoint.Point.draw(fruit)
 
     # Draws score text
-    pygame.display.set_caption('EazyMaze by Lukas Kubinec | Score: ' + str(player_score))
+    pygame.display.set_caption('EazyMaze by Lukas Kubinec | Level: ' + str(level_number + 1) + ' | Score: ' + str(player_score))
 
     # Refreshes display
     #pygame.display.flip()
