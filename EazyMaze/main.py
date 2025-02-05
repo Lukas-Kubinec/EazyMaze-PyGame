@@ -154,7 +154,7 @@ def initialise_objects():
 
             # Creation of walls
             if tile_grid[yy][xx] == 1:
-                solid_wall = ClassWall.Wall(xx * tile_size, yy * tile_size, tile_size, tile_size, (0, 120, 212), viewport)
+                solid_wall = ClassWall.Wall(xx * tile_size, yy * tile_size, tile_size, tile_size, (25, 125, 50), viewport)
                 wall_pos = (xx * tile_size, yy * tile_size)
                 # Storing walls and their positions
                 walls_list.append(solid_wall)
@@ -179,7 +179,7 @@ while game_running:
     for event in pygame.event.get():
         # BEGIN SECTION
         # Clears the screen every tick
-        viewport.fill((255, 255, 255))
+        viewport.fill((10, 150, 50))
 
         # EVENTS SECTION
         # Checks for any keyboard input
