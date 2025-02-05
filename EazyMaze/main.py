@@ -244,7 +244,6 @@ while game_running:
     pygame.display.set_caption('EazyMaze by Lukas Kubinec | Level: ' + str(level_number + 1) + ' | Score: ' + str(player_score))
 
     # Refreshes display
-    #pygame.display.flip()
     pygame.display.flip()
 
     # Sets the FPS limit to 60
