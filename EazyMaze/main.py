@@ -1,7 +1,7 @@
 """
 @Author: Lukas Kubinec
 @Description: A simple little maze game
-@Date: 04/02/2025
+@Date started: 04/02/2025
 @Contact: Luko.Kubinec@gmail.com
 @File: main.py
 """
@@ -27,61 +27,88 @@ tile_size = 64
 
 levels = [
 [
+    # Level 0
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 1, 0, 1, 1, 0, 1, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 2, 0, 0, 0, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 1, 1, 0, 1, 1, 0, 1, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+],
+
+[
     # Level 1
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
-    [1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
-    [1, 0, 1, 1, 0, 1, 0, 0, 0, 1],
-    [1, 0, 0, 0, 2, 1, 0, 1, 0, 1],
-    [1, 0, 1, 1, 0, 0, 0, 1, 0, 1],
-    [1, 0, 1, 1, 0, 1, 1, 1, 0, 1],
-    [1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+    [9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
+    [1, 9, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 9, 1, 9, 9, 1, 9, 9, 1, 9],
+    [1, 9, 1, 1, 9, 1, 1, 9, 1, 9],
+    [1, 9, 1, 9, 9, 1, 9, 9, 1, 9],
+    [1, 1, 1, 1, 1, 1, 9, 9, 1, 9],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 2, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ],
 
 [
     # Level 2
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 0, 0, 0, 1, 1, 1, 1, 1],
-    [1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
-    [1, 0, 1, 1, 0, 2, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-    [1, 0, 1, 1, 0, 0, 0, 1, 0, 1],
-    [1, 0, 0, 1, 0, 1, 1, 1, 0, 1],
-    [1, 1, 0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 2, 1, 0, 0, 0, 1, 0, 1, 1],
+    [1, 0, 1, 0, 1, 0, 1, 0, 0, 1],
+    [1, 0, 1, 0, 1, 0, 1, 1, 0, 1],
+    [1, 0, 1, 0, 1, 0, 1, 0, 0, 1],
+    [1, 0, 1, 0, 1, 0, 1, 0, 1, 1],
+    [1, 0, 1, 0, 1, 0, 1, 0, 0, 1],
+    [1, 0, 1, 0, 1, 0, 1, 1, 0, 1],
+    [1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ],
 
 [
     # Level 3
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 1, 0, 0, 0, 1, 1],
-    [1, 1, 0, 0, 0, 0, 1, 1, 1, 1],
-    [1, 0, 1, 0, 0, 0, 0, 1, 0, 1],
-    [1, 0, 1, 1, 1, 2, 0, 0, 0, 1],
-    [1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
-    [1, 0, 1, 1, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 1, 1, 1, 0, 1],
-    [1, 1, 0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 2, 0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 1, 0, 1, 0, 1, 1, 1, 0, 1],
+    [1, 0, 0, 1, 0, 1, 0, 0, 0, 1],
+    [1, 0, 1, 1, 0, 1, 1, 0, 1, 1],
+    [1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+    [1, 1, 1, 1, 1, 0, 1, 1, 0, 1],
+    [1, 0, 1, 0, 0, 0, 1, 1, 0, 1],
+    [1, 0, 0, 0, 1, 0, 1, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ],
 
 [
     # Level 4
-    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 1, 1, 1, 1, 1, 1, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 0, 0, 1, 0, 0, 0, 1, 1],
+    [1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+    [1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 1, 0, 0, 2, 0, 0, 0, 1, 1],
+    [1, 0, 0, 1, 0, 1, 0, 0, 0, 1],
     [1, 0, 1, 0, 0, 0, 0, 1, 0, 1],
-    [1, 0, 1, 0, 0, 2, 0, 1, 0, 1],
-    [1, 0, 1, 0, 0, 0, 0, 1, 0, 1],
-    [1, 0, 1, 0, 0, 0, 0, 1, 0, 1],
-    [1, 0, 1, 1, 1, 1, 1, 1, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0]
-]
+    [1, 0, 0, 1, 0, 0, 1, 0, 0, 1],
+    [1, 1, 0, 0, 1, 0, 0, 0, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+],
 
+[
+    # Level 5
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 1, 0, 1, 1, 0, 0, 1, 1, 0],
+    [1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 0, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 1, 0, 1, 0, 1, 0, 1, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 2, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
 ]
 
 # Used to store level number
@@ -93,7 +120,6 @@ tile_grid = levels[level_number]
 walls_list = []
 player_list = []
 points_list = []
-
 # Positions list
 wall_positions_list = []
 points_positions_list = []
@@ -120,7 +146,7 @@ def initialise_objects():
 
             # Creation of fruit
             if tile_grid[yy][xx] == 0:
-                point_fruit = ClassPoint.Point(xx * tile_size, yy * tile_size,16, (255, 100, 100), viewport)
+                point_fruit = ClassPoint.Point(xx * tile_size, yy * tile_size,12, (255, 100, 100), viewport)
                 fruit_pos = (xx * tile_size, yy * tile_size)
                 # Storing fruits and their positions
                 points_list.append(point_fruit)
@@ -138,15 +164,13 @@ def initialise_objects():
             if tile_grid[yy][xx] == 2:
                 player_xx = xx * tile_size
                 player_yy = yy * tile_size
-                player_class = ClassPlayer.Player(player_xx, player_yy, tile_size, tile_size, (0, 0, 0), viewport)
-                player_class.draw()
+                player_class = ClassPlayer.Player(player_xx, player_yy, tile_size, tile_size, (255, 0, 0), viewport)
                 player_list.append(player_class)
 
-
+# Game Start
 # Runs before the game loop
 initialise_objects()
-
-# Assigns objects from the objects list
+# Assigns Player from the player list at
 player = player_list[0]
 
 # Game running loop
@@ -161,16 +185,16 @@ while game_running:
         # Checks for any keyboard input
         if event.type == pygame.KEYDOWN:
             # Checks for specific keys are pressed down then checks if the direction player wants to move to is empty
-            if event.key == pygame.K_w:
+            if event.key == pygame.K_w or event.key == pygame.K_UP:
                 if (player.x, player.y-player_speed) not in wall_positions_list:
                     player.move_direction(0, -player_speed)
-            elif event.key == pygame.K_s:
+            elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                 if (player.x, player.y + player_speed) not in wall_positions_list:
                     player.move_direction(0, player_speed)
-            elif event.key == pygame.K_a:
+            elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
                 if (player.x - player_speed, player.y) not in wall_positions_list:
                     player.move_direction(-player_speed, 0)
-            elif event.key == pygame.K_d:
+            elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                 if (player.x + player_speed, player.y) not in wall_positions_list:
                     player.move_direction(player_speed, 0)
 
@@ -180,6 +204,7 @@ while game_running:
             tile_grid = levels[level_number]
             clean_lists()
             initialise_objects()
+            player = player_list[0]
 
         # Check collisions with points
         if (player.x, player.y) in points_positions_list:
@@ -189,20 +214,31 @@ while game_running:
                     points_list.pop(i - 1)
                     player_score += 1
 
-        # Checks if the window is closed
-        if event.type == pygame.QUIT:
+        # Check for player entering outside the screen
+        if player.x > WINDOW_WIDTH:
+            player.x = 0
+        elif player.x < 0:
+            player.x = WINDOW_WIDTH
+        elif player.y > WINDOW_HEIGHT:
+            player.y = 0
+        elif player.y < 0:
+            player.y = WINDOW_HEIGHT
+
+        # Checks if player wants to quit game
+        if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
             game_running = False
 
     # DRAW SECTION
-    # Draws the player object
-    player.draw()
-
     # Draws the tiles taken from list
     for wall in walls_list:
         ClassWall.Wall.draw(wall)
 
+    # Draws the fruit points
     for fruit in points_list:
         ClassPoint.Point.draw(fruit)
+
+    # Draws the player object
+    player.draw()
 
     # Draws score text
     pygame.display.set_caption('EazyMaze by Lukas Kubinec | Level: ' + str(level_number + 1) + ' | Score: ' + str(player_score))

@@ -11,7 +11,5 @@ class Point:
 
     def draw(self):
         pygame.draw.circle(self.surface, self.color, (self.x, self.y), self.radius)
-
-    def __del__(self):
-        pass
+        pygame.draw.polygon(self.surface, (150, 200, 100),[(self.x, self.y - 15), (self.x, self.y - 5), (self.x + 10, self.y - 15)])
 

@@ -12,5 +12,6 @@ class Wall(pygame.Rect):
         self.height = height
 
     def draw(self):
-        pygame.draw.rect(self.surface, self.color, self)
+        pygame.draw.rect(self.surface, self.color, self, border_radius=3)
+
 
